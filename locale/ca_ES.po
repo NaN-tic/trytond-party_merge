@@ -1,0 +1,39 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:party.party,merged_into:"
+msgid "Merged Into"
+msgstr "Fusionat amb"
+
+msgctxt "field:party.party.merge.view,duplicates:"
+msgid "Duplicates"
+msgstr "Duplicats"
+
+msgctxt "field:party.party.merge.view,id:"
+msgid "ID"
+msgstr "Identificador"
+
+msgctxt "field:party.party.merge.view,target:"
+msgid "Target"
+msgstr "Objectiu"
+
+msgctxt "model:ir.action,name:wizard_party_merge"
+msgid "Merge Parties"
+msgstr "Fusiona tercers"
+
+msgctxt "model:party.party.merge.view,name:"
+msgid "Party Merge"
+msgstr "Fusió de tercers"
+
+msgctxt "view:party.party.merge.view:"
+msgid "Merge Parties"
+msgstr "Fusiona tercers"
+
+msgctxt "wizard_button:party.party.merge,merge,end:"
+msgid "Cancel"
+msgstr "Cancel·lat"
+
+msgctxt "wizard_button:party.party.merge,merge,result:"
+msgid "OK"
+msgstr "D'acord"
