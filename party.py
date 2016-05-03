@@ -3,6 +3,7 @@
     party.py
 
     :copyright: (c) 2014 by Openlabs Technologies & Consulting (P) Limited
+    :copyright: (C) 2016 by NaN·tic Projectes de programari lliure
     :license: BSD, see LICENSE for more details.
 """
 from sql import Table
@@ -10,7 +11,9 @@ from trytond.model import ModelSQL, ModelView, fields
 from trytond.transaction import Transaction
 from trytond.pool import PoolMeta, Pool
 from trytond.pyson import Eval, Bool, Not
+from trytond.rpc import RPC
 from trytond.wizard import Wizard, StateView, StateTransition, Button
+
 
 __metaclass__ = PoolMeta
 __all__ = ['Party', 'PartyMergeView', 'PartyMerge']
@@ -79,6 +82,10 @@ class MergeMixin:
 
         self.validate([target])
 
+    @classmethod
+    def merge_parties(cls, party, target):
+        party.merge_into(target)
+
 
 class Party(MergeMixin):
     __name__ = 'party.party'
@@ -86,6 +93,13 @@ class Party(MergeMixin):
         states={
             'invisible': Not(Bool(Eval('merged_into'))),
             })
+
+    @classmethod
+    def __setup__(cls):
+        super(Party, cls).__setup__()
+        cls.__rpc__.update({
+                'merge_parties': RPC(instantiate=0),
+                })
 
 
 class PartyMergeView(ModelView):
