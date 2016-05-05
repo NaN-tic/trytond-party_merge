@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
@@ -36,4 +36,4 @@ msgstr "Cancel·lar"
 
 msgctxt "wizard_button:party.party.merge,merge,result:"
 msgid "OK"
-msgstr "Crear"
+msgstr "Aceptar"
