@@ -61,7 +61,6 @@ class MergeMixin:
                     where=(sql_field == self.id)
                     ))
 
-
         # Validate all related records and target.
         # Do it at the very end because we may # temporarily leave
         # information inconsistent in the previous loop
@@ -82,10 +81,6 @@ class MergeMixin:
 
         self.validate([target])
 
-    @classmethod
-    def merge_parties(cls, party, target):
-        party.merge_into(target)
-
 
 class Party(MergeMixin):
     __name__ = 'party.party'
@@ -98,8 +93,12 @@ class Party(MergeMixin):
     def __setup__(cls):
         super(Party, cls).__setup__()
         cls.__rpc__.update({
-                'merge_parties': RPC(instantiate=0),
+                'merge_parties': RPC(readonly=False, instantiate=slice(0, 2)),
                 })
+
+    @classmethod
+    def merge_parties(cls, party, target):
+        party.merge_into(target)
 
 
 class PartyMergeView(ModelView):
@@ -120,7 +119,7 @@ class PartyMerge(Wizard):
         'party.party.merge.view',
         'party_merge.party_merge_view', [
             Button('Cancel', 'end', 'tryton-cancel'),
-            Button('OK', 'result', 'tryton-ok'),
+            Button('OK', 'result', 'tryton-ok', default=True),
             ]
         )
     result = StateTransition()
