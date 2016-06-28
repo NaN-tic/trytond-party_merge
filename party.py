@@ -15,11 +15,10 @@ from trytond.rpc import RPC
 from trytond.wizard import Wizard, StateView, StateTransition, Button
 
 
-__metaclass__ = PoolMeta
 __all__ = ['Party', 'PartyMergeView', 'PartyMerge']
 
 
-class MergeMixin:
+class MergeMixin(object):
     def merge_into(self, target):
         """
         Merge current record into target
@@ -83,6 +82,7 @@ class MergeMixin:
 
 
 class Party(MergeMixin):
+    __metaclass__ = PoolMeta
     __name__ = 'party.party'
     merged_into = fields.Many2One('party.party', 'Merged Into', readonly=True,
         states={
