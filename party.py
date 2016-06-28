@@ -36,7 +36,7 @@ class MergeMixin:
         self.merged_into = target
         self.save()
 
-        cursor = Transaction().cursor
+        cursor = Transaction().connection.cursor()
 
         to_validate = []
         for field in model_fields:
